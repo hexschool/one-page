@@ -7,7 +7,6 @@
   <meta property="og:title" content="打造一頁式金流商務網頁" />
   <meta property="og:description" content="本線上課程你只要花一點小錢，將能夠學會目前主流的線上交易模式，還在使用傳統銷售模式嗎？透過網路銷售吧！" />
   <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/hexschool-api.appspot.com/o/tutorials%2Fonepage%2Ffacebook_default_image.png?alt=media&token=7af020c0-d5b5-4467-92b4-9dba4e875c12" />
-  <meta property="og:site_name" content="打造一頁式金流商務網頁" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="zh_TW" />
   <meta property="og:url" content="http://course-one-page.hexschool.com/" />
@@ -194,27 +193,48 @@
     </div>
   </section>
 
-  <!-- Teacher -->
-  <section class="section">
+  <!-- Unlock Event -->
+  <section class="section" id="course-progress">
     <div class="container">
       <div class="row">
         <div class="col-half col-half-center">
-          <div class="row">
-            <div class="col-half">
-              <h3>講師：廖 洧杰</h3>
-              <ul>
-                <li>高雄前端社群發起人</li>
-                <li>中華電信前端講師</li>
-                <li>高雄大學前端講師</li>
-                <li>十年實務經驗，授課時數超過一千小時</li>
-              </ul>
+
+          <h3>額外課程解鎖活動!!</h3>
+          <p>只要課程達到目標，講師將會額外補充課程內容，無需額外付費，所有的學員都可以受惠，趁著折扣期間，一起集氣讓講師加開課程吧～。</p>
+          <p>PS: 100% = <span v-text="basicVaule"></span>人喔～</p>
+          <h4 class="text-center m-t-1" v-if="course || current === 0">
+            目前上課已有 <strong class="text-success" v-text="current"></strong> 人
+          </h4>
+          <h4 class="text-center m-t-1" v-if="!course">
+            課程人數資料讀取中 ...
+          </h4>
+
+          <div class="progress-wrap m-y-1"
+            v-bind:class="{ 'success': 100 <= ((current) / (item.goal * basicVaule / 100) * 100)}"
+            v-for="(index, item) in courseProgress">
+            <h5 class="progress-info">
+              <span v-text="item.goal"></span> % -
+              <span v-text="item.name"></span>
+              <span class="text-success hidden-desktop" v-if="100 <= ((current) / (item.goal * basicVaule / 100) * 100)">[ 課程開啟 ]</span>
+            </h5>
+            <div class="progress-success hidden-mobile" v-if="100 <= ((current) / (item.goal * basicVaule / 100) * 100)">課程<br>開啟!</div>
+            <div class="progress m-y-1">
+              <div class="progress-bar"
+                v-if="100 > ((current) / (item.goal * basicVaule / 100) * 100)"
+                style="width: {{Math.floor((current) / (item.goal * basicVaule / 100) * 100)}}%;">
+              </div>
+              <div class="progress-bar progress-complete"
+                v-if="100 <= ((current) / (item.goal * basicVaule / 100) * 100)"
+                style="width: 100%;">
+              </div>
             </div>
-            <div class="col-half">
-              <img src="images/gonsakon.jpg" alt="" class="img-fluid">
+            <div class="text-center text-gray">
+              <!-- [ <span v-text="current"></span> / <span v-text="item.goal * basicVaule / 100"></span>人 -->
+              [ 目前進度 <span v-text="Math.floor((current) / (item.goal * basicVaule / 100) * 100)"></span>% ]
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </section>
@@ -245,9 +265,12 @@
               <li>串接網頁流量分析服務，徹底了解網頁動向</li>
               <li>整合金流服務不是難事，收款出貨自己來</li>
             </ol>
-            <p>課程連結：<a href="https://www.udemy.com/landingpage/">Udemy 課程連結</a></p>
+            <p>課程連結：<a href="https://www.udemy.com/landingpage/?couponCode=origin" data-link="https://www.udemy.com/landingpage/" data-coupon="onepageCoupon" class="couponCode-link">Udemy 課程預覽</a></p>
             <div class="m-y-1">
-              <a href="#" class="btn btn-radius btn-accent-outline btn-lg">
+              <a href="https://cweb.pay2go.com/EPG/hexschool_test/gjDv48"
+                target="_blank" data-pay="onpagePay"
+                data-link="https://cweb.pay2go.com/EPG/hexschool_test/"
+                class="btn btn-radius btn-accent-outline btn-lg payCode-link">
                 <span class="fa fa-diamond"></span>
                 限時特價 <span class="text-money">NT$ <em itemprop="price">880</em></span>
                 <span class="fa fa-diamond"></span>
@@ -263,7 +286,7 @@
   <!-- Facebook Like -->
   <div class="bg-darker">
     <div class="container p-y-1" style="overflow: hidden">
-
+      <div class="fb-like" data-href="http://course-one-page.hexschool.com/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
     </div>
   </div>
 
@@ -344,18 +367,18 @@
       <div class="row">
         <div class="col-half col-half-center">
           <h2 class="text-center">QA</h2>
-          <h4>Q：為什麼你們要用 Udemy 放你們的影音課程，他有什麼好處嗎？</h4>
+          <h4 class="m-b-0">Q：為什麼你們要用 Udemy 放你們的影音課程，他有什麼好處嗎？</h4>
           <p>A：他除了可上傳影音課程外，同時也能上傳我們設計出來的範例程式碼、設計單選題目，並能在 IOS、Andorid 上面學習，同時也能追蹤每位學生的學習機制，讓我們放心挑選 Udemy 作為我們的教學平台</p>
-          <h4 id="Q：在聽影音課程有遇到問題的話，有助教會協助嗎？"><a href="#Q：在聽影音課程有遇到問題的話，有助教會協助嗎？" class="headerlink" title="Q：在聽影音課程有遇到問題的話，有助教會協助嗎？"></a>Q：在聽影音課程有遇到問題的話，有助教會協助嗎？</h4><p>A：沒問題，Udemy 提供相當完善的發問機制，遇到問題在系統上發問，我們立即會收到通知，並盡快回應你的問題！</p>
-          <h4 id="Q：我們公司想要買幾套作為教育訓練教材，可開統編嗎？"><a href="#Q：我們公司想要買幾套作為教育訓練教材，可開統編嗎？" class="headerlink" title="Q：我們公司想要買幾套作為教育訓練教材，可開統編嗎？"></a>Q：我們公司想要買幾套作為教育訓練教材，可開統編嗎？</h4><p>A：沒問題，購買後截圖付費金額，並將統編、抬頭、寄送地址 mail 到 <a href="mailto:service@hexschool.com" target="_blank" rel="external">service@hexschool.com</a>。</p>
-          <h4 id="Q：我們想要與你們討論合作。"><a href="#Q：我們想要與你們討論合作。" class="headerlink" title="Q：我們想要與你們討論合作。"></a>Q：我們想要與你們討論合作。</h4><p>A：非常歡迎！請將討論細節 mail 至我們的信箱 <a href="mailto:service@hexschool.com" target="_blank" rel="external">service@hexschool.com</a>。</p>
+          <h4 class="m-b-0"><a href="#Q：在聽影音課程有遇到問題的話，有助教會協助嗎？" class="headerlink" title="Q：在聽影音課程有遇到問題的話，有助教會協助嗎？"></a>Q：在聽影音課程有遇到問題的話，有助教會協助嗎？</h4><p>A：沒問題，Udemy 提供相當完善的發問機制，遇到問題在系統上發問，我們立即會收到通知，並盡快回應你的問題！</p>
+          <h4 class="m-b-0"><a href="#Q：我們公司想要買幾套作為教育訓練教材，可開統編嗎？" class="headerlink" title="Q：我們公司想要買幾套作為教育訓練教材，可開統編嗎？"></a>Q：我們公司想要買幾套作為教育訓練教材，可開統編嗎？</h4><p>A：沒問題，購買後截圖付費金額，並將統編、抬頭、寄送地址 mail 到 <a href="mailto:service@hexschool.com" target="_blank" rel="external">service@hexschool.com</a>。</p>
+          <h4 class="m-b-0"><a href="#Q：我們想要與你們討論合作。" class="headerlink" title="Q：我們想要與你們討論合作。"></a>Q：我們想要與你們討論合作。</h4><p>A：非常歡迎！請將討論細節 mail 至我們的信箱 <a href="mailto:service@hexschool.com" target="_blank" rel="external">service@hexschool.com</a>。</p>
           <hr>
           <h3 id="付費"><a href="#付費" class="headerlink" title="付費"></a>付費</h3><h4 id="Q：我沒有信用卡，有沒有其他匯款方案？"><a href="#Q：我沒有信用卡，有沒有其他匯款方案？" class="headerlink" title="Q：我沒有信用卡，有沒有其他匯款方案？"></a>Q：我沒有信用卡，有沒有其他匯款方案？</h4><p>A：每個課程現在都提供了其它付款方式，在課程連結旁就可以找到這個其他付款方式，而且我們是採用台灣第三方支付，安全又可靠。</p>
-          <h4 id="Q：採用其它付款流程，但還沒有收到課程怎麼辦？"><a href="#Q：採用其它付款流程，但還沒有收到課程怎麼辦？" class="headerlink" title="Q：採用其它付款流程，但還沒有收到課程怎麼辦？"></a>Q：採用其它付款流程，但還沒有收到課程怎麼辦？</h4><p>A：課程會在 48 小時內寄出，如果沒有收到可以透過右下角的客服，或直接 mail 至我們的信箱 <a href="mailto:service@hexschool.com" target="_blank" rel="external">service@hexschool.com</a> ，我們會盡快處理以保障您的權益</p>
+          <h4 class="m-b-0"><a href="#Q：採用其它付款流程，但還沒有收到課程怎麼辦？" class="headerlink" title="Q：採用其它付款流程，但還沒有收到課程怎麼辦？"></a>Q：採用其它付款流程，但還沒有收到課程怎麼辦？</h4><p>A：課程會在 48 小時內寄出，如果沒有收到可以透過右下角的客服，或直接 mail 至我們的信箱 <a href="mailto:service@hexschool.com" target="_blank" rel="external">service@hexschool.com</a> ，我們會盡快處理以保障您的權益</p>
           <hr>
           <h3 id="退款"><a href="#退款" class="headerlink" title="退款"></a>退款</h3><h4 id="Q：如果怕線上影音課程吸收不好，可以要求退費嗎？"><a href="#Q：如果怕線上影音課程吸收不好，可以要求退費嗎？" class="headerlink" title="Q：如果怕線上影音課程吸收不好，可以要求退費嗎？"></a>Q：如果怕線上影音課程吸收不好，可以要求退費嗎？</h4><p>A：沒問題！Udemy <strong>在 30 天內都可申請退款</strong>！</p>
-          <h4 id="Q：Udemy-如何退款？"><a href="#Q：Udemy-如何退款？" class="headerlink" title="Q：Udemy 如何退款？"></a>Q：Udemy 如何退款？</h4><p>A：透過 Udemy 的課程頁面的 選項 下即可使用退款功能。</p>
-          <h4 id="Q：其它支付流程如何退款？"><a href="#Q：其它支付流程如何退款？" class="headerlink" title="Q：其它支付流程如何退款？"></a>Q：其它支付流程如何退款？</h4><p>A：請發信到 <a href="mailto:service@hexschool.com" target="_blank" rel="external">service@hexschool.com</a> 並詳著以下內容：</p>
+          <h4 class="m-b-0"><a href="#Q：Udemy-如何退款？" class="headerlink" title="Q：Udemy 如何退款？"></a>Q：Udemy 如何退款？</h4><p>A：透過 Udemy 的課程頁面的 選項 下即可使用退款功能。</p>
+          <h4 class="m-b-0"><a href="#Q：其它支付流程如何退款？" class="headerlink" title="Q：其它支付流程如何退款？"></a>Q：其它支付流程如何退款？</h4><p>A：請發信到 <a href="mailto:service@hexschool.com" target="_blank" rel="external">service@hexschool.com</a> 並詳著以下內容：</p>
           <ul>
           <li>退款帳戶</li>
           <li>Udemy 用戶名稱</li>
@@ -393,7 +416,7 @@
             </address>
           </div>
           <div class="col-three-one hidden-mobile">
-
+            <div class="fb-page" data-href="https://www.facebook.com/hexschool/" data-tabs="timeline" data-width="400" data-height="300" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/hexschool/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/hexschool/">六角學院</a></blockquote></div>
           </div>
         </div>
       </div>
@@ -409,6 +432,14 @@
   </div>
 </div>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.7&appId=760173380749493";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- GA 程式碼 -->
 <script>
@@ -423,12 +454,15 @@
 
 <!-- javascript framework -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+<script src="javascripts/vendor.js"></script>
 
 <!-- javascript plugin -->
 <script src="javascripts/vendors/jquery.countdown.min.js"></script>
 
 <!-- custom -->
 <script src="javascripts/clock.js"></script>
+<script src="javascripts/all.js"></script>
 
 </body>
 </html>
