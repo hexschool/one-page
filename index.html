@@ -27,6 +27,20 @@
     font-weight: 900;
   }
   </style>
+  <!-- Facebook Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '518325078292779');
+  fbq('track', "PageView");</script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=518325078292779&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Facebook Pixel Code -->
 </head>
 <body>
 <div class="wrap" itemscope itemtype="http://schema.org/Product">
@@ -54,11 +68,11 @@
         </svg>
       </a>
       <ul class="nav-menu pull-right clearfix">
-        <li><a href="#course">
+        <li><a href="#course mp-click" title="可以學到什麼">
             可以學到什麼
           </a>
         </li>
-        <li><a href="#order-section" class="nav-accent active">
+        <li><a href="#order-section" class="nav-accent active mp-click" title="立刻購買">
           立即購買
           <span class="fa fa-arrow-right"></span>
           </a>
@@ -69,7 +83,8 @@
 
   <!-- header -->
   <!-- Background Made by Carlos Aguilar. -->
-  <header class="page-header" style="background-image: url(images/banner_icons.png), url(images/footer_lodyas.png);">
+  <header class="page-header"
+    style="background-image: url(images/banner_icons.png), url(images/footer_lodyas.png);">
     <div class="center-block">
       <!-- <img src="images/demo.png" alt="" width="300" height="200" class="img-fluid"> -->
       <h1 class="text-center m-b-0" itemprop="name">打造<br>一頁式金流商務網頁</h1>
@@ -265,18 +280,20 @@
               <li>串接網頁流量分析服務，徹底了解網頁動向</li>
               <li>整合金流服務不是難事，收款出貨自己來</li>
             </ol>
-            <p>課程連結：<a href="https://www.udemy.com/landingpage/?couponCode=20160828-HEXSCHOOL" data-link="https://www.udemy.com/landingpage/" data-coupon="onepageCoupon" class="couponCode-link">Udemy 課程預覽</a></p>
+            <p>課程連結：<a href="https://www.udemy.com/landingpage/?couponCode=20160828-HEXSCHOOL" target="_blank" data-link="https://www.udemy.com/landingpage/" data-coupon="onepageCoupon" class="couponCode-link tracking-link" title="Udemy 課程預覽">Udemy 課程預覽</a></p>
             <div class="m-y-1">
               <a href="https://web.pay2go.com/EPG/_hexschool/1KrbSQ"
                 target="_blank" data-pay="onpagePay"
                 data-link="https://web.pay2go.com/EPG/_hexschool/"
-                class="btn btn-radius btn-accent-outline btn-lg payCode-link">
+                class="btn btn-radius btn-accent-outline btn-lg payCode-link tracking-link"
+                title="連接智付寶購買">
                 <span class="fa fa-diamond"></span>
                 限時特價 <span class="text-money">NT$ <em itemprop="price">880</em></span>
                 <span class="fa fa-diamond"></span>
               </a>
             </div>
             <p>PS:在找範例嗎？這個網站將是最好的範例。</p>
+            <p>註：課程購買後，會在隔日至 48 小時內收到課程開通信件。</p>
           </div>
         </div>
       </div>
@@ -323,7 +340,8 @@
               <a href="https://web.pay2go.com/EPG/_hexschool/Cciuiz"
                 target="_blank" data-pay="threeinonePay"
                 data-link="https://web.pay2go.com/EPG/_hexschool/"
-                class="btn btn-radius btn-accent-outline btn-lg payCode-link">
+                class="btn btn-radius btn-accent-outline btn-lg payCode-link tracking-link"
+                title="智付寶購買組合包">
                 <span class="fa fa-diamond"></span>
                 限時特價 <span class="text-money">NT$ 2850</span>
                 <span class="fa fa-diamond"></span>
@@ -454,6 +472,10 @@
   ga('send', 'pageview');
 </script>
 <!-- GA 程式碼 end -->
+
+<!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+mixpanel.init("75759612e011b856d03c2a78e8219094");</script><!-- end Mixpanel -->
 
 <!-- javascript framework -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>

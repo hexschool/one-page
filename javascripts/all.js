@@ -63,7 +63,8 @@ firebase.initializeApp(config);
 database = firebase.database();
 
 database.ref('/udemy-api').on('value', function(snapshot) {
-  return appCourse.course = snapshot.val();
+  appCourse.course = snapshot.val();
+  return appCourse.current = appCourse.course.onepage.detail.num_subscribers;
 });
 
 appCourse = new Vue({
@@ -112,3 +113,73 @@ helper = {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   }
 };
+
+$(document).ready(function() {
+  var adsource, dimensionValue, generate_callback, mixpanelPageView, pageTitle, setCookie;
+  setCookie = function(name, value) {
+    return $.cookie(name, value, {
+      expires: 1 / 24,
+      path: '/'
+    });
+  };
+  adsource = helper.getParameterByName('utm_source');
+  pageTitle = $('title').text();
+  if (adsource && !$.cookie('adsource')) {
+    setCookie('adsource', adsource);
+  } else if ($.cookie('adsource') && !adsource) {
+    adsource = $.cookie('adsource');
+  }
+  mixpanelPageView = function() {
+    return mixpanel.track('PageView', {
+      'campaign': '打造一頁式網站',
+      'adsource': adsource || '',
+      'pageTitle': pageTitle
+    });
+  };
+  mixpanelPageView();
+  $('a.mp-click').click(function(event) {
+    var link, title;
+    link = $(this).attr('href');
+    title = $(this).attr('title');
+    return mixpanel.track('Click a link', {
+      'campaign': '打造一頁式網站',
+      'link': link,
+      'title': title,
+      'adsource': adsource || '',
+      'pageTitle': pageTitle
+    });
+  });
+  generate_callback = function(a) {
+    return function() {
+      window.location = a.attr('href');
+    };
+  };
+  $('.tracking-link').on('click', function(e) {
+    var dimensionValue, link, title;
+    link = $(this).attr('href');
+    title = $(this).attr('title') || '';
+    dimensionValue = {
+      'message': '加入購物車',
+      'campaign': '打造一頁式網站',
+      'link': link,
+      'title': title,
+      'adsource': adsource || ''
+    };
+    fbq('track', 'AddToCart');
+    ga('set', 'dimension1', dimensionValue);
+    return mixpanel.track('AddToCart', dimensionValue);
+  });
+  if ($('#orderSuccess').length) {
+    dimensionValue = {
+      'message': '其它支付流程付款成功',
+      'adsource': adsource || ''
+    };
+    fbq('track', 'Purchase', {
+      content_type: 'product',
+      value: 10,
+      currency: 'USD'
+    });
+    mixpanel.track('orderSuccess', dimensionValue);
+    ga('set', 'dimension2', dimensionValue);
+  }
+});
