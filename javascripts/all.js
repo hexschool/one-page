@@ -115,7 +115,7 @@ helper = {
 };
 
 $(document).ready(function() {
-  var adsource, dimensionValue, generate_callback, mixpanelPageView, pageTitle, setCookie;
+  var adsource, audience, dimensionValue, generate_callback, mixpanelPageView, pageTitle, setCookie;
   setCookie = function(name, value) {
     return $.cookie(name, value, {
       expires: 1 / 24,
@@ -123,6 +123,7 @@ $(document).ready(function() {
     });
   };
   adsource = helper.getParameterByName('utm_source');
+  audience = helper.getParameterByName('audience');
   pageTitle = $('title').text();
   if (adsource && !$.cookie('adsource')) {
     setCookie('adsource', adsource);
@@ -133,6 +134,7 @@ $(document).ready(function() {
     return mixpanel.track('PageView', {
       'campaign': '打造一頁式網站',
       'adsource': adsource || '',
+      'audience': audience,
       'pageTitle': pageTitle
     });
   };
@@ -163,6 +165,7 @@ $(document).ready(function() {
       'campaign': '打造一頁式網站',
       'link': link,
       'title': title,
+      'audience': audience,
       'adsource': adsource || ''
     };
     fbq('track', 'AddToCart');
