@@ -80,16 +80,16 @@ appCourse = new Vue({
 appCourse.courseProgress = [
   {
     name: '設計容易讓人衝動購買的文案設計',
-    goal: '250'
+    goal: '100'
   }, {
     name: '商務網頁必用的前端互動效果',
-    goal: '500'
+    goal: '250'
   }, {
     name: '七種不可犯的 UI/UX 錯誤',
-    goal: '750'
+    goal: '500'
   }, {
     name: '7hr 線上直播課程：如何打造一頁式金流商務網頁',
-    goal: '1000'
+    goal: '750'
   }
 ];
 
