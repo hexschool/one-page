@@ -68,7 +68,7 @@
         </svg>
       </a>
       <ul class="nav-menu pull-right clearfix">
-        <li><a href="#course mp-click" title="可以學到什麼">
+        <li><a href="#course" class="mp-click" title="可以學到什麼">
             可以學到什麼
           </a>
         </li>
@@ -87,7 +87,7 @@
     style="background-image: url(images/banner_icons.png), url(images/footer_lodyas.png);">
     <div class="center-block">
       <!-- <img src="images/demo.png" alt="" width="300" height="200" class="img-fluid"> -->
-      <h1 class="text-center m-b-0" itemprop="name">打造<br>一頁式金流商務網頁</h1>
+      <h1 class="text-center m-b-0 m-t-1" itemprop="name">打造<br>一頁式金流商務網頁</h1>
     </div>
     <div class="bottom-block">
       <img src="images/shopping_bag.png" alt="" width="600" class="img-fluid">
@@ -114,7 +114,7 @@
             </div>
             <div>
               <h3>一步一步學到會</h3>
-              <p>在這課程中，你將學會如何將手中的網站上線至雲端空間，並且加入金流、Google 分析、社群整合，所有流程在影片中都會有詳盡介紹，怕一次沒看懂嗎？沒關係，你可以反覆看好幾次，甚至詢問我們專業講師，您將獲得滿意得解答。</p>
+              <p>這次課程中，你將學會如何將手中的網站上線至雲端空間，並且加入金流、Google 分析、社群整合，所有流程在影片中都會有詳盡介紹，怕一次沒看懂嗎？沒關係，你可以反覆看好幾次，甚至詢問六角學院的專業講師，我們都在線上你唷！>.0</p>
             </div>
           </div>
         </div>
@@ -224,11 +224,18 @@
   <section class="section" id="course-progress">
     <div class="container">
       <div class="row">
-        <div class="col-half">
-
+        <div class="col-half col-half-center">
+          <h3>Udemy 學生給我們的評論</h3>
+          <div class="text-center">
+            <img src="/images/feedback.jpg" class="img-fluid" alt="">
+          </div>
+          <!-- Facebook Like -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-half col-half-center">
           <h3>額外課程解鎖活動!!</h3>
-          <p>只要課程達到目標，講師將會額外補充課程內容，無需額外付費，所有的學員都可以受惠，趁著折扣期間，一起集氣讓講師加開課程吧～。</p>
-          <p>P.S. 100% = <span v-text="basicVaule"></span>人喔～</p>
+          <p>快呼朋引伴課解鎖更多課程，100% = <span v-text="basicVaule"></span>人！</p>
           <h4 class="text-center m-t-1" v-if="course || current === 0">
             目前上課已有 <strong class="text-success" v-text="current"></strong> 人 (持續增加中!!)
           </h4>
@@ -238,11 +245,14 @@
 
           <div class="progress-wrap m-y-1"
             v-bind:class="{ 'success': 100 <= ((current) / (item.goal * basicVaule / 100) * 100)}"
-            v-for="(index, item) in courseProgress">
+            v-for="(index, item) in courseProgress"
+            v-if="index == 0 || 100 <= ((current) / (courseProgress[index - 1].goal * basicVaule / 100) * 100)">
             <h5 class="progress-info">
               <span v-text="item.goal"></span> % -
               <span v-text="item.name"></span>
+              <br class="hidden-desktop">
               <span class="text-success hidden-desktop" v-if="100 <= ((current) / (item.goal * basicVaule / 100) * 100)">[ 課程開啟 ]</span>
+              <small class="text-gray">[ 目前進度 <span v-text="Math.floor((current) / (item.goal * basicVaule / 100) * 100)"></span>% ]</small>
             </h5>
             <div class="progress-success hidden-mobile" v-if="100 <= ((current) / (item.goal * basicVaule / 100) * 100)">課程<br>開啟!</div>
             <div class="progress m-y-1">
@@ -255,16 +265,8 @@
                 style="width: 100%;">
               </div>
             </div>
-            <div class="text-center text-gray">
-              [ 目前進度 <span v-text="Math.floor((current) / (item.goal * basicVaule / 100) * 100)"></span>% ]
-            </div>
           </div>
           <p>把課程分享給朋友，讓老師提供更豐富的課程吧！</p>
-        </div>
-        <div class="col-half hidden-mobile">
-          <h3>Udemy 學生給我們的評論</h3>
-          <img src="/images/feedback.jpg" alt="">
-          <!-- Facebook Like -->
           <div style="overflow: hidden">
             <div class="fb-like" data-href="http://course-one-page.hexschool.com/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
           </div>
@@ -277,7 +279,6 @@
   <section class="section bg-dark text-white" id="order-section">
     <div class="container">
       <div class="text-center">
-        <input type="hidden" id="countdown-clock" value="2016/9/12">
         <h2 class="m-b-0"><span class="fa fa-clock-o"></span> <small>活動優惠僅剩</small> <br> <span class="countdown-clock text-clock text-accent"></span></h2>
       </div>
     </div>
@@ -288,7 +289,6 @@
       <div class="row">
         <div class="col-half">
           <img src="images/shopping_bag.png" itemprop="image" alt="" class="img-fluid">
-
         </div>
         <div class="col-half">
           <div class="m-t-1">
@@ -302,18 +302,19 @@
             </ol>
             <p>P.S. 在找範例嗎？這個網站將是最好的範例。</p>
             <p><strong>課程連結</strong>：<a href="https://www.udemy.com/landingpage/?couponCode=20160828-HEXSCHOOL" target="_blank" data-link="https://www.udemy.com/landingpage/" data-coupon="onepageCoupon" class="couponCode-link tracking-link" title="Udemy 課程預覽">Udemy 課程預覽</a> (可直接信用卡付款立即上課！)</p>
-            <p>原價：<del>1600 元</del></p>
+            <p>原價：<del>1600 元</del> (活動結束將會恢復原價)</p>
             <div class="m-y-1">
               <a href="https://web.pay2go.com/EPG/_hexschool/1KrbSQ"
                 target="_blank" data-pay="onpagePay"
                 data-link="https://web.pay2go.com/EPG/_hexschool/"
-                class="btn btn-radius btn-accent-outline btn-lg payCode-link tracking-link"
+                class="btn btn-radius btn-accent btn-lg payCode-link tracking-link"
                 title="連接智付寶購買">
                 <span class="fa fa-diamond"></span>
                 限時特價 <span class="text-money">NT$ <em itemprop="price">880</em></span>
                 <span class="fa fa-diamond"></span>
               </a>
             </div>
+            <p><span class="fa fa-clock-o"></span> 55折 <small>優惠僅剩</small> <span class="countdown-clock text-clock text-accent"></span></p>
             <p>註：課程購買後，會在隔日至 48 小時內收到課程開通信件。</p>
           </div>
         </div>
@@ -338,7 +339,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-half">
+        <div class="col-half m-y-1">
           <div class="card">
             <div class="card-head">
               <img src="images/html_onepage.png" class="img-fluid" alt="">
@@ -367,10 +368,11 @@
                 <small>(現省 <span class="text-danger">NT$ 1000 </span>)</small>
                 <span class="fa fa-hand-peace-o text-warning"></span>
               </h5>
+              <p><span class="fa fa-clock-o"></span> <small>限時優惠僅剩</small> <span class="countdown-clock text-clock text-accent"></span></p>
             </div>
           </div>
         </div>
-        <div class="col-half">
+        <div class="col-half m-y-1">
           <div class="card">
             <div class="card-head">
               <img src="images/html_jquery_onepage.png" class="img-fluid" alt="">
@@ -394,15 +396,16 @@
                 data-link="https://web.pay2go.com/EPG/_hexschool/"
                 class="btn btn-radius btn-accent-outline btn-lg payCode-link tracking-link"
                 title="智付寶購買組合包">
-                <span class="fa fa-diamond"></span>
+                <span class="fa fa-diamond hidden-mobile"></span>
                 限時特價 <span class="text-money">NT$ 2880</span>
-                <span class="fa fa-diamond"></span>
+                <span class="fa fa-diamond hidden-mobile"></span>
               </a>
               <h5 class="text-xs-center m-t-1 m-b-0">
                 <span class="fa fa-hand-peace-o text-warning"></span>
                 <small>(現省 <span class="text-danger">NT$ 1920 </span>)</small>
                 <span class="fa fa-hand-peace-o text-warning"></span>
               </h5>
+              <p><span class="fa fa-clock-o"></span> <small>限時優惠僅剩</small> <span class="countdown-clock text-clock text-accent"></span></p>
             </div>
           </div>
         </div>
@@ -469,6 +472,14 @@
   </section>
 
   <!-- Footer -->
+  <nav class="navbar navbar-default navbar-bottom bg-dark text-white">
+    <div class="container">
+      <div class="text-center">
+        <input type="hidden" id="countdown-clock" value="2016/9/12">
+        <h4 class="m-b-0"><span class="fa fa-clock-o"></span> 55折 <small>優惠僅剩</small> <span class="countdown-clock text-clock text-accent"></span></h4>
+      </div>
+    </div>
+  </nav>
   <footer class="bg-dark text-white">
 
     <section class="section">
