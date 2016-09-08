@@ -85,11 +85,8 @@ appCourse.courseProgress = [
     name: '商務網頁必用的前端互動效果',
     goal: '250'
   }, {
-    name: '七種不可犯的 UI/UX 錯誤',
-    goal: '500'
-  }, {
-    name: '7hr 線上直播課程：如何打造一頁式金流商務網頁',
-    goal: '750'
+    name: '3hr 直播課程：打造一頁式金流商務網頁',
+    goal: '350'
   }
 ];
 
