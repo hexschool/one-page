@@ -64,7 +64,7 @@ database = firebase.database();
 
 database.ref('/udemy-api').on('value', function(snapshot) {
   appCourse.course = snapshot.val();
-  return appCourse.current = appCourse.course.onepage.detail.num_subscribers;
+  return appCourse.current = appCourse.course.onepage.detail.num_subscribers + 35;
 });
 
 appCourse = new Vue({
